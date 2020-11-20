@@ -6,7 +6,7 @@ import dlib
 import time
 import argparse
 import models
-form img import encodings
+from img import encodings
 ##################################################
 obama_face_encoding = encodings(7)
 yu_encoding = encodings(1)
