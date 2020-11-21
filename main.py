@@ -131,7 +131,7 @@ while True:
         cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
         cv2.putText(frame, emotion, (left + 6, bottom + 16), font, 1.0, (255, 255, 255), 1)
         time.sleep(1)
-    cv2.putText(frame, "Blink pls", (6, 20), font, 1.0, (255, 255, 255), 1)
+    cv2.putText(frame, "Blink pls", (10, 30), font, 1.0, (0, 0, 255), 1)
     cv2.imshow('Video', frame)            
     process_this_frame = not process_this_frame
     if cv2.waitKey(1) & 0xFF == ord('q'):
