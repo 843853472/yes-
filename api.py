@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from scipy import spatial
 import PIL.Image
 import dlib
@@ -89,7 +90,6 @@ def face_distance(face_encodings, face_to_compare):
 
 def compare_faces(known_face_encodings, face_encoding_to_check, tolerance=0.6):
     return list(face_distance(known_face_encodings, face_encoding_to_check) <= tolerance)
-########################################imutils###########################################################
 FACIAL_LANDMARKS_68_IDXS = OrderedDict([
 	("mouth", (48, 68)),
 	("inner_mouth", (60, 68)),

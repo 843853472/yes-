@@ -1,4 +1,4 @@
 @echo off
 
 pause
-python .\°á×©µÄkey.py
+python .\main.py

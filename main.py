@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import api
 import cv2
 import numpy as np
@@ -8,7 +9,6 @@ import argparse
 import models
 from img import encodings
 ##################################################
-obama_face_encoding = encodings(7)
 yu_encoding = encodings(1)
 hui_face_encoding = encodings(2)
 chen_face_encoding = encodings(3)
@@ -17,7 +17,6 @@ mu_face_encoding = encodings(5)
 man_face_encoding = encodings(6)
 
 known_face_encodings = [
-    obama_face_encoding,
     yu_encoding,
     hui_face_encoding,
     chen_face_encoding,
@@ -27,7 +26,6 @@ known_face_encodings = [
 ]
 
 known_face_names = [
-    "Handsome Boy",
     "Yu",
     "Hui",
     "Chen",
@@ -49,7 +47,6 @@ predictor = dlib.shape_predictor(models.pose_predictor_model_location())
 emotion_classifier = load_model(models.simple_CNN_530_0_65_hdf5())
 face_classifier = cv2.CascadeClassifier("haarcascades/haarcascade_frontalface_default.xml")
 ############################################################################
-# Initialize some variables
 face_locations = []
 face_encodings = []
 face_names = []
@@ -112,7 +109,6 @@ while True:
                 emotion = emotion_labels[emotion_label_arg]
             face_names = []
             for face_encoding in face_encodings:
-                # See if the face is a match for the known face(s)
                 matches = api.compare_faces(known_face_encodings, face_encoding)
                 name = "Unknown"
                 face_distances = api.face_distance(known_face_encodings, face_encoding)
