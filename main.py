@@ -8,6 +8,7 @@ import time
 import argparse
 import models
 from img import encodings
+import time
 ##################################################
 yu_encoding = encodings(1)
 hui_face_encoding = encodings(2)
@@ -15,24 +16,25 @@ chen_face_encoding = encodings(3)
 rui_face_encoding = encodings(4)
 mu_face_encoding = encodings(5)
 man_face_encoding = encodings(6)
-
 known_face_encodings = [
     yu_encoding,
     hui_face_encoding,
     chen_face_encoding,
     rui_face_encoding,
     mu_face_encoding,
-    man_face_encoding
+    man_face_encoding,
 ]
-
 known_face_names = [
-    "Yu",
-    "Hui",
-    "Chen",
-    "Rui",
-    "Mu",
-    "Man"
+    "1 Yu",
+    "2 Hui",
+    "3 Chen",
+    "4 Rui",
+    "5 Mu",
+    "6 Man",
 ]
+jian_face_encoding = encodings(0)
+known_face_encodings.append(jian_face_encoding)
+known_face_names.append("0 Jian")
 #########################################################################
 ap = argparse.ArgumentParser()
 ap.add_argument("-t", "--threshold", type = float, default=0.20,
@@ -60,13 +62,13 @@ font = cv2.FONT_HERSHEY_DUPLEX
 (rStart, rEnd) = api.FACIAL_LANDMARKS_IDXS["right_eye"]
 ##########################################################################
 emotion_labels = {
-    0: 'angry',
-    1: 'disgust',
-    2: 'fear',
-    3: 'joy',
-    4: 'sad',
-    5: 'surprise',
-    6: 'clam'
+    0: 'Angry',
+    1: 'Disgust',
+    2: 'Fear',
+    3: 'Happy',
+    4: 'Sad',
+    5: 'Surprise',
+    6: 'Netural'
 }
 ##########################################################################
 while True:
@@ -123,12 +125,13 @@ while True:
         bottom *= 4
         left *= 4
         cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
-        cv2.rectangle(frame, (left, bottom - 35), (right, bottom + 20), (0, 0, 255), cv2.FILLED)
-        cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
-        cv2.putText(frame, emotion, (left + 6, bottom + 16), font, 1.0, (255, 255, 255), 1)
-        time.sleep(1)
-    cv2.putText(frame, "Blink pls", (10, 30), font, 1.0, (0, 0, 255), 1)
-    cv2.imshow('Video', frame)            
+        cv2.rectangle(frame, (0, 0), (150, 80), (0, 0, 255), cv2.FILLED)
+        cv2.putText(frame, name, (10, 30), font, 1.0, (255, 255, 255), 1)
+        cv2.putText(frame, emotion, (10, 60), font, 1.0, (255, 255, 255), 1)
+
+    cv2.imshow('Video', frame)  
+    if len(face_locations): 
+        time.sleep(3)    
     process_this_frame = not process_this_frame
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break

@@ -88,7 +88,7 @@ def face_distance(face_encodings, face_to_compare):
 
     return np.linalg.norm(face_encodings - face_to_compare, axis=1)
 
-def compare_faces(known_face_encodings, face_encoding_to_check, tolerance=0.6):
+def compare_faces(known_face_encodings, face_encoding_to_check, tolerance=0.45):
     return list(face_distance(known_face_encodings, face_encoding_to_check) <= tolerance)
 FACIAL_LANDMARKS_68_IDXS = OrderedDict([
 	("mouth", (48, 68)),
