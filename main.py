@@ -32,9 +32,9 @@ known_face_names = [
     "5 Mu",
     "6 Man",
 ]
-jian_face_encoding = encodings(7)
-known_face_encodings.append(jian_face_encoding)
-known_face_names.append("7 Jian")
+#jian_face_encoding = encodings(7)
+#known_face_encodings.append(jian_face_encoding)
+#known_face_names.append("7 Jian")
 #########################################################################
 ap = argparse.ArgumentParser()
 ap.add_argument("-t", "--threshold", type = float, default=0.20,
